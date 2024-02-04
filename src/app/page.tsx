@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
 import { Input } from "@/components/Input";
@@ -18,7 +19,7 @@ export default function Home() {
             <Input placeholder="Digite o código da reunião" type="text" />
 
 
-            <button>Entrar</button>
+            <Button title="Entrar" type="submit" />
           </div>
         </Container>
       </div>
