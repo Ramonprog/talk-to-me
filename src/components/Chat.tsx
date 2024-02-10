@@ -2,8 +2,8 @@ import { Send } from "lucide-react";
 
 export default function Chat() {
     return (
-        <div className=" bg-gray-900 px-4 pt-4 w-[20%] rounded-md m-3 h-full">
-            <div className="relative h-full">
+        <div className="bg-gray-900 px-4 pt-4 md:w-[15%] rounded-md m-3 h-full hidden md:flex">
+            <div className="relative h-full w-full">
                 <div className="bg-gray-950 rounded-sm p-2">
                     <div className="flex items-center text-blue-400 gap-2">
                         <span>Alisson Ramon</span>
