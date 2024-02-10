@@ -19,6 +19,7 @@ const config: Config = {
         black: "#0F0F0F",
         primary: "#81E6D9",
         secondary: "#212121",
+        "gray-900": "#2c2c2c",
       },
     },
   },

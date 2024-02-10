@@ -19,7 +19,7 @@ export default function Footer() {
                 <div className="grid grid-cols-3 items-center">
                     <span>{hours}:{minutes}</span>
                     <div className="flex space-x-6 justify-center ">
-                        {!isMuted ?
+                        {isMuted ?
                             <Mic onClick={() => setIsMuted(!isMuted)}
                                 className="h-12 w-16 p-2 bg-gray-950 rounded-md cursor-pointer" />
                             :
