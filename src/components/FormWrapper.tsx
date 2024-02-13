@@ -19,8 +19,14 @@ export default function FormWapper() {
         <Container>
             <div className="max-w-[580px] w-full mx-auto">
                 <div className="flex items-center text-center">
-                    <span className={` w-1/2 p-4 cursor-pointer ${selectRoom === 'join' && ' bg-secondary rounded-t-lg text-primary'}`} onClick={() => handleSelectRoom('join')}>Ingressar</span>
-                    <span className={` w-1/2 p-4 cursor-pointer ${selectRoom === 'create' && ' bg-secondary rounded-t-lg text-primary'}`} onClick={() => handleSelectRoom('create')}>Nova reunião</span>
+                    <span
+                        className={` w-1/2 p-4 cursor-pointer ${selectRoom === 'join' && ' bg-secondary rounded-t-lg text-primary'}`}
+                        onClick={() => handleSelectRoom('join')}
+                    >Ingressar</span>
+                    <span
+                        className={` w-1/2 p-4 cursor-pointer ${selectRoom === 'create' && ' bg-secondary rounded-t-lg text-primary'}`}
+                        onClick={() => handleSelectRoom('create')}
+                    >Nova reunião</span>
                 </div>
                 <div className="space-y-4 bg-secondary p-4 rounded-b-lg">
                     {selectRoom === 'join' && (
