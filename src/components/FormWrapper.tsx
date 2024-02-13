@@ -31,6 +31,14 @@ export default function FormWapper() {
         return Math.floor(Math.random() * maxDigits);
     }
 
+    function handleJoinRoom(e: FormEvent) {
+        e.preventDefault()
+        if (nameJoin.current && nameJoin.current?.value !== '' && idRoom.current && idRoom.current?.value !== '') {
+            sessionStorage.setItem('userName', nameJoin.current?.value)
+            window.location.href = `/room/${idRoom.current?.value}`
+        }
+    }
+
     return (
         <Container>
             <div className="max-w-[580px] w-full mx-auto">
@@ -46,11 +54,11 @@ export default function FormWapper() {
                 </div>
                 <div className="space-y-4 bg-secondary p-4 rounded-b-lg">
                     {selectRoom === 'join' && (
-                        <>
+                        <form onSubmit={(e) => handleJoinRoom(e)} className="space-y-8">
                             <Input placeholder="Digite seu nome" type="text" ref={nameJoin} />
                             <Input placeholder="ID da reunião" type="text" ref={idRoom} />
                             <Button title="Entrar" type="submit" />
-                        </>
+                        </form>
                     )}
 
                     {selectRoom === 'create' && (

@@ -18,9 +18,6 @@ export default function Chat({ roomId }: { roomId: string }) {
     const [chat, setChat] = useState<IChatMessage[]>([])
 
     useEffect(() => {
-
-        console.log("🚀 ~ chat:", chat)
-
         socket?.on('chat', (data) => {
             console.log("🚀 ~ socket?.on ~ data:", data)
             setChat([...chat, data])
