@@ -1,11 +1,13 @@
 'use client'
-import { useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import Button from "./Button";
 import Container from "./Container";
 import { Input } from "./Input";
+import { useRouter } from "next/navigation";
 
 export default function FormWapper() {
     const [selectRoom, setSelectRoom] = useState<'join' | 'create'>('join')
+    const router = useRouter()
 
     const handleSelectRoom = (room: 'join' | 'create') => {
         setSelectRoom(room)
@@ -14,6 +16,20 @@ export default function FormWapper() {
     const nameJoin = useRef<HTMLInputElement>(null)
     const nameCreate = useRef<HTMLInputElement>(null)
     const idRoom = useRef<HTMLInputElement>(null)
+
+    function handleCreateRoom(e: FormEvent) {
+        e.preventDefault()
+        if (nameCreate.current && nameCreate.current?.value !== '') {
+            sessionStorage.setItem('userName', nameCreate.current?.value)
+            const roomId = genereteRendomString()
+            router.push(`/room/${roomId}`)
+        }
+    }
+
+    function genereteRendomString() {
+        const maxDigits = 100000;
+        return Math.floor(Math.random() * maxDigits);
+    }
 
     return (
         <Container>
@@ -33,16 +49,20 @@ export default function FormWapper() {
                         <>
                             <Input placeholder="Digite seu nome" type="text" ref={nameJoin} />
                             <Input placeholder="ID da reunião" type="text" ref={idRoom} />
+                            <Button title="Entrar" type="submit" />
                         </>
                     )}
 
                     {selectRoom === 'create' && (
-                        <>
+
+                        <form onSubmit={(e) => handleCreateRoom(e)} className="space-y-8">
                             <Input placeholder="Digite seu nome" type="text" ref={nameCreate} />
-                        </>
+                            <Button title="Entrar" type="submit" />
+                        </form>
+
                     )}
 
-                    <Button title="Entrar" type="submit" />
+
                 </div>
             </div>
 
