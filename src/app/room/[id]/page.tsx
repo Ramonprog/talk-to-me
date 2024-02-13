@@ -1,8 +1,23 @@
+'use client'
 import Chat from "@/components/Chat";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { SocketContext } from "@/contexts/SocketContext";
+import { useContext, useEffect } from "react";
 
 export default function Room({ params }: { params: { id: string } }) {
+    const { socket } = useContext(SocketContext)
+
+    useEffect(() => {
+        socket?.on('connect', async () => {
+            console.log('connected')
+            socket?.emit('subscribe', {
+                roomId: params.id,
+                socketId: socket.id,
+            });
+        })
+    }, [socket, params.id])
+
     return (
         <div className="h-screen">
             <Header />
@@ -28,7 +43,7 @@ export default function Room({ params }: { params: { id: string } }) {
                     </div>
 
                 </div>
-                <Chat />
+                <Chat roomId={params.id} />
             </div>
 
             <Footer />
