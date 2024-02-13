@@ -20,7 +20,7 @@ export default function Chat({ roomId }: { roomId: string }) {
     useEffect(() => {
         socket?.on('chat', (data) => {
             console.log("🚀 ~ socket?.on ~ data:", data)
-            setChat([...chat, data])
+            setChat(prev => [...prev, data])
         })
     }, [socket])
 
