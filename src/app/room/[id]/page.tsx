@@ -19,6 +19,11 @@ export default function Room({ params }: { params: { id: string } }) {
             await initCamera()
         })
 
+        socket?.on('newUserStart', (data) => {
+            console.log('usuário conectado na sala', data)
+            createPeerConnection(data.sender)
+        })
+
         socket?.on('new user', (data) => {
             createPeerConnection(data.socketId)
             socket.emit('newUserStart', {
@@ -27,9 +32,6 @@ export default function Room({ params }: { params: { id: string } }) {
             })
         })
 
-        socket?.on('newUserStart', (data) => {
-            console.log('usuário conectado na sala', data)
-        })
     }, [socket, params.id])
 
     const createPeerConnection = (socketId: string) => {
